@@ -22,7 +22,7 @@ export default function Home() {
   }
 
   return (
-    <main className="w-full h-screen bg-background flex flex-col space-y-2">
+    <main className=" bg-background flex flex-col space-y-2">
       <div className="py-4 px-8 bg-secondary flex justify-between items-center">
         <h1 className="text-4xl text-primary">Componentes React</h1>
         <ThemeToggle />
