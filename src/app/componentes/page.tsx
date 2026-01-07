@@ -1,9 +1,16 @@
 "use client";
-import Footer from "@/ui/footer/Footer";
-import Header from "@/ui/header/Header";
 
 export default function Componentes() {
-  const data = ["Theme", "Accordion", "Alert", "Dialog", "Input", "Search"];
+  const data = [
+    "Theme",
+    "Accordion",
+    "Alert",
+    "Dialog",
+    "Input",
+    "Search",
+    "Radio",
+    "Button",
+  ];
 
   return (
     <div className="flex flex-col items-center">

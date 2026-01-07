@@ -1,9 +1,11 @@
 "use client";
 import Accordion from "@/components/accordion/Accordion";
 import Alert from "@/components/alert/Alert";
+import Button from "@/components/button/Button";
 import Dialog from "@/components/dialog/Dialog";
 import { Input } from "@/components/input/Input";
 import { InputLabel } from "@/components/input/InputLabel";
+import Radio from "@/components/radio/Radio";
 import Search from "@/components/search/Search";
 import ThemeToggle from "@/theme/ThemeToggle";
 import { useState } from "react";
@@ -115,6 +117,24 @@ export default function Home() {
             Show Alert
           </button>
           {openAlert && <Alert isOpen onClose={() => setOpenAlert(false)} />}
+        </div>
+      </div>
+      {/* RADIO */}
+      <div className="py-4 px-8">
+        <h1 className="text-2xl text-foreground pb-2">RADIO</h1>
+        <div className="px-2 shadow-md w-full h-30 bg-background border rounded-lg border-foreground flex justify-center items-center">
+          <div className="flex flex-col gap-2">
+            <Radio label="Feminino" value="Feminino" nameGroup="Genero" />
+            <Radio label="Masculino" value="Masculino" nameGroup="Genero" />
+            <Radio label="Outro" value="Outro" nameGroup="Genero" />
+          </div>
+        </div>
+      </div>
+      {/* Button */}
+      <div className="py-4 px-8">
+        <h1 className="text-2xl text-foreground pb-2">BUTTON</h1>
+        <div className="px-2 shadow-md w-full h-30 bg-background border rounded-lg border-foreground flex justify-center items-center">
+          <Button value="Button" variant="default" />
         </div>
       </div>
     </main>
