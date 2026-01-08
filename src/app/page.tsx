@@ -10,6 +10,9 @@ import Radio from "@/components/radio/Radio";
 import Search from "@/components/search/Search";
 import ThemeToggle from "@/theme/ThemeToggle";
 import { useState } from "react";
+import Card from "./../components/card/Card";
+import Carousel from "@/components/carousel/Carousel";
+import CarouselItem from "@/components/carousel/CarouselItem";
 
 export default function Home() {
   const [input, setInput] = useState("");
@@ -147,6 +150,31 @@ export default function Home() {
         <div className="px-2 shadow-md w-full h-90 bg-background border rounded-lg border-foreground flex justify-center py-4">
           <div className="flex flex-col gap-2">
             <DatePicker />
+          </div>
+        </div>
+      </div>
+      {/* Card */}
+      <div className="py-4 px-8">
+        <h1 className="text-2xl text-foreground pb-2">CARD</h1>
+        <div className="px-2 shadow-md w-full h-100 bg-background border rounded-lg border-foreground flex justify-center py-4">
+          <div className="flex flex-col gap-2">
+            <Card />
+          </div>
+        </div>
+      </div>
+      {/* Carousel */}
+      <div className="py-4 px-8">
+        <h1 className="text-2xl text-foreground pb-2">CAROUSEL</h1>
+        <div className="px-2 shadow-md w-full h-100 bg-background border rounded-lg border-foreground flex justify-center py-4">
+          <div className="max-w-xl mx-auto p-6">
+            <Carousel>
+              <CarouselItem>1</CarouselItem>
+              <CarouselItem>2</CarouselItem>
+              <CarouselItem>3</CarouselItem>
+              <CarouselItem>4</CarouselItem>
+              <CarouselItem>5</CarouselItem>
+              <CarouselItem>6</CarouselItem>
+            </Carousel>
           </div>
         </div>
       </div>

@@ -11,6 +11,8 @@ export default function Componentes() {
     "Radio",
     "Button",
     "Calendar",
+    "Card",
+    "Carousel",
   ];
 
   return (
@@ -23,12 +25,14 @@ export default function Componentes() {
         </p>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
           {data.sort().map((item, key) => (
-            <p
-              key={key}
-              className="font-semibold border-b-2 w-fit border-background hover:border-accent-foreground cursor-pointer transition"
-            >
-              {item}
-            </p>
+            <div className="w-fit">
+              <p
+                key={key}
+                className="font-semibold cursor-pointer relative inline-block after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-0 after:bg-accent-foreground after:transition-[width] after:duration-300 hover:after:w-full"
+              >
+                {item}
+              </p>
+            </div>
           ))}
         </div>
       </div>

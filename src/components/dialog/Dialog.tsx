@@ -14,7 +14,7 @@ export default function Dialog({ isOpen, setIsOpen }: DialogProps) {
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="bg-background w-100 p-4 flex flex-col gap-2 absolute rounded-md shadow-lg max-w-md space-y-2 border border-border transition-all duration-200 ease-out"
+        className="bg-card w-100 p-4 flex flex-col gap-2 absolute rounded-md shadow-lg max-w-md space-y-2 border border-border transition-all duration-200 ease-out"
       >
         <div className="flex justify-between items-center">
           <h1 className="text-lg">Titulo</h1>
