@@ -10,6 +10,7 @@ export default function Componentes() {
     "Search",
     "Radio",
     "Button",
+    "Calendar",
   ];
 
   return (

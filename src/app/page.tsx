@@ -2,6 +2,7 @@
 import Accordion from "@/components/accordion/Accordion";
 import Alert from "@/components/alert/Alert";
 import Button from "@/components/button/Button";
+import DatePicker from "@/components/date/DatePicker";
 import Dialog from "@/components/dialog/Dialog";
 import { Input } from "@/components/input/Input";
 import { InputLabel } from "@/components/input/InputLabel";
@@ -133,8 +134,20 @@ export default function Home() {
       {/* Button */}
       <div className="py-4 px-8">
         <h1 className="text-2xl text-foreground pb-2">BUTTON</h1>
-        <div className="px-2 shadow-md w-full h-30 bg-background border rounded-lg border-foreground flex justify-center items-center">
+        <div className="px-2 shadow-md w-full h-30 bg-background border rounded-lg border-foreground flex justify-center items-center gap-2">
           <Button value="Button" variant="default" />
+          <Button value="Button" variant="primary" />
+          <Button value="Button" variant="destructive" />
+          <Button value="Button" variant="ghost" />
+        </div>
+      </div>
+      {/* Calendar */}
+      <div className="py-4 px-8">
+        <h1 className="text-2xl text-foreground pb-2">CALENDAR</h1>
+        <div className="px-2 shadow-md w-full h-90 bg-background border rounded-lg border-foreground flex justify-center py-4">
+          <div className="flex flex-col gap-2">
+            <DatePicker />
+          </div>
         </div>
       </div>
     </main>
