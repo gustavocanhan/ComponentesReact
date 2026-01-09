@@ -13,6 +13,10 @@ import { useState } from "react";
 import Card from "./../components/card/Card";
 import Carousel from "@/components/carousel/Carousel";
 import CarouselItem from "@/components/carousel/CarouselItem";
+import CheckBox from "@/components/checkbox/CheckBox";
+import Collapsible from "@/components/collapsible/Collapsible";
+import ContextMenu from "@/components/contextmenu/ContextMenu";
+import { Copy, Edit, Trash } from "lucide-react";
 
 export default function Home() {
   const [input, setInput] = useState("");
@@ -175,6 +179,77 @@ export default function Home() {
               <CarouselItem>5</CarouselItem>
               <CarouselItem>6</CarouselItem>
             </Carousel>
+          </div>
+        </div>
+      </div>
+      {/* CheckBox */}
+      <div className="py-4 px-8">
+        <h1 className="text-2xl text-foreground pb-2">CHECKBOX</h1>
+        <div className="px-2 shadow-md w-full h-40 bg-background border rounded-lg border-foreground flex justify-center items-center">
+          <div className="flex flex-col gap-2">
+            <CheckBox
+              labelChk="JavaScript"
+              nameChk="tech"
+              valueChk="js"
+              isDisabled={false}
+            />
+            <CheckBox
+              labelChk="TypeScript"
+              nameChk="tech"
+              valueChk="ts"
+              isDisabled={true}
+            />
+            <CheckBox
+              labelChk="C#"
+              nameChk="tech"
+              valueChk="c#"
+              isDisabled={false}
+            />
+          </div>
+        </div>
+      </div>
+      {/* Collapsible */}
+      <div className="py-4 px-8">
+        <h1 className="text-2xl text-foreground pb-2">COLLAPSIBLE</h1>
+        <div className="px-2 shadow-md w-full h-60 bg-background border rounded-lg border-foreground flex justify-center items-center">
+          <div className="flex flex-col gap-2">
+            <Collapsible title="Detalhes">
+              <p>Conteúdo um</p>
+              <p>Conteúdo dois</p>
+              <p>Conteúdo tres</p>
+              <p>Conteúdo quatro</p>
+            </Collapsible>
+          </div>
+        </div>
+      </div>
+      {/* Context Menu */}
+      <div className="py-4 px-8">
+        <h1 className="text-2xl text-foreground pb-2">CONTEXT MENU</h1>
+        <div className="px-2 shadow-md w-full h-60 bg-background border rounded-lg border-foreground flex justify-center items-center">
+          <div className="flex flex-col gap-2">
+            <ContextMenu
+              items={[
+                {
+                  label: "Editar",
+                  icon: <Edit className="w-4 h-4" />,
+                  onClick: () => alert("Editar"),
+                },
+                {
+                  label: "Duplicar",
+                  icon: <Copy className="w-4 h-4" />,
+                  onClick: () => alert("Duplicar"),
+                },
+                {
+                  label: "Excluir",
+                  icon: <Trash className="w-4 h-4" />,
+                  onClick: () => alert("Excluir"),
+                },
+              ]}
+            >
+              <div className="rounded-md border p-6">
+                Clique com botao direito aqui
+              </div>
+            </ContextMenu>
           </div>
         </div>
       </div>

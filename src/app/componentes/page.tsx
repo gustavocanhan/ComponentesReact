@@ -13,6 +13,9 @@ export default function Componentes() {
     "Calendar",
     "Card",
     "Carousel",
+    "Checkbox",
+    "Collapsible",
+    "Context Menu",
   ];
 
   return (
@@ -23,9 +26,9 @@ export default function Componentes() {
           Here you will find various components <br />
           that I created as a basis for study and practice.
         </p>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
           {data.sort().map((item, key) => (
-            <div className="w-fit">
+            <div className="w-fit" key={key}>
               <p
                 key={key}
                 className="font-semibold cursor-pointer relative inline-block after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-0 after:bg-accent-foreground after:transition-[width] after:duration-300 hover:after:w-full"
