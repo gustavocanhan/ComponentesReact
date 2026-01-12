@@ -906,7 +906,7 @@ export function Input() {
   },
 
   input_label: {
-    title: "Input",
+    title: "Input Label",
     description: "Collect user text input and label.",
     preview: <InputLabel />,
     code: `"use client";
@@ -1059,7 +1059,11 @@ export default function Search() {
   "skeleton-loading": {
     title: "Skeleton",
     description: "Show loading placeholders.",
-    preview: <SkeletonLoading />,
+    preview: (
+      <div className="w-md p-2">
+        <SkeletonLoading />
+      </div>
+    ),
     code: `export default function Skeleton() {
   return (
     <div className="flex gap-2 w-full">
@@ -1155,7 +1159,11 @@ export default function Table({ items }: TableProps) {
   tabs: {
     title: "Tabs",
     description: "Switch between content sections.",
-    preview: <Tabs />,
+    preview: (
+      <div>
+        <Tabs />
+      </div>
+    ),
     code: `"use client";
 
 import { useState } from "react";

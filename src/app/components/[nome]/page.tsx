@@ -43,7 +43,7 @@ export default function ComponentPage({ params }: PageProps) {
       </p>
 
       {/* Preview */}
-      <div className="border border-muted-foreground/10 shadow rounded-xl flex justify-center items-center py-12 mb-12">
+      <div className="border border-muted-foreground/10 shadow rounded-xl flex justify-center items-center h-110 mb-12 px-4">
         {component.preview}
       </div>
 
