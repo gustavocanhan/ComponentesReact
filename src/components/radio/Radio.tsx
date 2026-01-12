@@ -1,19 +1,34 @@
-type RadioProps = {
-  label: string;
-  value: string;
-  nameGroup: string;
-};
-
-export default function Radio({ label, value, nameGroup }: RadioProps) {
+export default function Radio() {
   return (
-    <label className="flex gap-1 items-center text-sm">
-      <input
-        type="radio"
-        name={nameGroup}
-        value={value}
-        className="accent-accent-foreground"
-      />
-      {label}
-    </label>
+    <div className="flex flex-col gap-2">
+      <label className="flex gap-1 items-center text-sm">
+        <input
+          type="radio"
+          name="tech"
+          value="JavaScript"
+          className="accent-accent-foreground"
+        />
+        JavaScript
+      </label>
+      <label className="flex gap-1 items-center text-sm">
+        <input
+          type="radio"
+          name="tech"
+          value="JavaScript"
+          className="accent-accent-foreground"
+          disabled
+        />
+        TypeScript
+      </label>
+      <label className="flex gap-1 items-center text-sm">
+        <input
+          type="radio"
+          name="tech"
+          value="JavaScript"
+          className="accent-accent-foreground"
+        />
+        C#
+      </label>
+    </div>
   );
 }

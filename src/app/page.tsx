@@ -17,6 +17,12 @@ import CheckBox from "@/components/checkbox/CheckBox";
 import Collapsible from "@/components/collapsible/Collapsible";
 import ContextMenu from "@/components/contextmenu/ContextMenu";
 import { Copy, Edit, Trash } from "lucide-react";
+import DropdownMenu from "@/components/dropdown-menu/DropdownMenu";
+import NotFound from "@/components/notfound/NotFound";
+import Skeleton from "@/components/skeleton-loading/Skeleton";
+import HoverMenu from "@/components/hovermenu/HoverMenu";
+import Table from "@/components/table/Table";
+import Tabs from "@/components/tabs/Tabs";
 
 export default function Home() {
   const [input, setInput] = useState("");
@@ -250,6 +256,78 @@ export default function Home() {
                 Clique com botao direito aqui
               </div>
             </ContextMenu>
+          </div>
+        </div>
+      </div>
+      {/* Dropdown Menu */}
+      <div className="py-4 px-8">
+        <h1 className="text-2xl text-foreground pb-2">DROPDOWN MENU</h1>
+        <div className="p-2 shadow-md w-full h-60 bg-background border rounded-lg border-foreground flex justify-center">
+          <div className="flex flex-col gap-2">
+            <DropdownMenu />
+          </div>
+        </div>
+      </div>
+      {/* Not Found */}
+      <div className="py-4 px-8">
+        <h1 className="text-2xl text-foreground pb-2">NOT FOUND</h1>
+        <div className="p-2 shadow-md w-full h-100 bg-background border rounded-lg border-foreground flex items-center justify-center">
+          <div className="flex flex-col gap-2">
+            <NotFound />
+          </div>
+        </div>
+      </div>
+      {/* Skeleton */}
+      <div className="py-4 px-8">
+        <h1 className="text-2xl text-foreground pb-2">SKELETON LOADING</h1>
+        <div className="p-2 shadow-md w-full bg-background border rounded-lg border-foreground">
+          <div className="w-100 mx-auto py-8">
+            <Skeleton />
+          </div>
+        </div>
+      </div>
+      {/* Hover Menu */}
+      <div className="py-4 px-8">
+        <h1 className="text-2xl text-foreground pb-2">HOVER MENU</h1>
+        <div className="p-2 shadow-md w-full h-60 bg-background border rounded-lg border-foreground flex py-4 justify-center">
+          <div className="flex flex-col gap-2">
+            <HoverMenu />
+          </div>
+        </div>
+      </div>
+      {/* Table */}
+      <div className="py-4 px-8">
+        <h1 className="text-2xl text-foreground pb-2">TABLE</h1>
+        <div className="p-2 shadow-md w-full h-70 bg-background border rounded-lg border-foreground flex py-6 justify-center">
+          <div className="flex flex-col gap-2">
+            <Table
+              items={[
+                {
+                  id: 1,
+                  product: "Arroz",
+                  price: 29.8,
+                },
+                {
+                  id: 2,
+                  product: "Carne",
+                  price: 299.8,
+                },
+                {
+                  id: 3,
+                  product: "TV",
+                  price: 29.9998,
+                },
+              ]}
+            />
+          </div>
+        </div>
+      </div>
+      {/* Tabs */}
+      <div className="py-4 px-8">
+        <h1 className="text-2xl text-foreground pb-2">TABS</h1>
+        <div className="p-2 shadow-md w-full h-120 bg-background border rounded-lg border-foreground flex py-6 justify-center">
+          <div className="flex flex-col gap-2">
+            <Tabs />
           </div>
         </div>
       </div>

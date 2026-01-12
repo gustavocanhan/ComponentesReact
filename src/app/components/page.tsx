@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 export default function Componentes() {
   const data = [
     "Theme",
@@ -7,6 +9,7 @@ export default function Componentes() {
     "Alert",
     "Dialog",
     "Input",
+    "Input Label",
     "Search",
     "Radio",
     "Button",
@@ -16,6 +19,12 @@ export default function Componentes() {
     "Checkbox",
     "Collapsible",
     "Context Menu",
+    "Dropdown Menu",
+    "Not Found",
+    "Skeleton",
+    "Hover Menu",
+    "Table",
+    "Tabs",
   ];
 
   return (
@@ -29,12 +38,17 @@ export default function Componentes() {
         <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
           {data.sort().map((item, key) => (
             <div className="w-fit" key={key}>
-              <p
+              <Link
+                href={
+                  item === "Input Label"
+                    ? "components/input_label"
+                    : `components/${item.toLowerCase()}`
+                }
                 key={key}
                 className="font-semibold cursor-pointer relative inline-block after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-0 after:bg-accent-foreground after:transition-[width] after:duration-300 hover:after:w-full"
               >
                 {item}
-              </p>
+              </Link>
             </div>
           ))}
         </div>

@@ -10,7 +10,7 @@ export default function NavLinks({ variant }: NavLinksProps) {
 
   const links = [
     { label: "Home", href: "/" },
-    { label: "Components", href: "/componentes" },
+    { label: "Components", href: "/components" },
     { label: "About", href: "/about" },
   ];
 
