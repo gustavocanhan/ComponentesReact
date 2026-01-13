@@ -203,6 +203,176 @@ export default function Button({ value, variant = "default" }: ButtonProps) {
 `,
   },
 
+  calendar: {
+    title: "Calendar",
+    description: "Select a date from a calendar.",
+    preview: <DatePicker />,
+    code: `"use client";
+
+import { Calendar, ChevronLeft, ChevronRight } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+
+export default function DatePicker() {
+  const pickerRef = useRef<HTMLDivElement | null>(null);
+
+  const [open, setOpen] = useState(false);
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+
+  const CURRENT_YEAR = new Date().getFullYear();
+  const YEARS = Array.from({ length: 11 }, (_, i) => CURRENT_YEAR - 5 + i);
+
+  const today = new Date();
+
+  const [currentDate, setCurrentDate] = useState(
+    new Date(today.getFullYear(), today.getMonth(), 1)
+  );
+
+  const year = currentDate.getFullYear();
+  const month = currentDate.getMonth();
+
+  const firstDayofMonth = new Date(year, month, 1).getDay();
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+  const days = Array.from({
+    length: firstDayofMonth + daysInMonth,
+  });
+
+  useEffect(() => {
+    if (!YEARS.includes(currentDate.getFullYear())) {
+      const today = new Date();
+      setCurrentDate(new Date(today.getFullYear(), today.getMonth(), 1));
+    }
+
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        pickerRef.current &&
+        !pickerRef.current.contains(event.target as Node)
+      ) {
+        setOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  return (
+    <div ref={pickerRef} className="relative w-72">
+      <button
+        onClick={() => setOpen((prev) => !prev)}
+        className="w-full rounded-md border px-3 py-2 text-left text-sm flex justify-between items-center cursor-pointer"
+      >
+        <span>
+          {selectedDate
+            ? selectedDate.toLocaleDateString("pt-BR")
+            : "Selecione uma data"}
+        </span>
+        <Calendar className="w-4 h-4" />
+      </button>
+
+      {open && (
+        <div className="absolute z-10 mt-2 w-full rounded-lg border bg-background p-4 shadow-lg">
+          <div className="mb-3 flex items-center justify-center gap-2">
+            <button
+              onClick={() => setCurrentDate(new Date(year, month - 1, 1))}
+              className="rounded p-1 hover:bg-muted-foreground/10 cursor-pointer"
+            >
+              <ChevronLeft />
+            </button>
+
+            <select
+              value={month}
+              onChange={(e) =>
+                setCurrentDate(new Date(year, Number(e.target.value), 1))
+              }
+              className="rounded border px-2 py-1 text-sm cursor-pointer"
+            >
+              {MONTHS.map((m, index) => (
+                <option key={m} value={index}>
+                  {m}
+                </option>
+              ))}
+            </select>
+
+            <select
+              onChange={(e) =>
+                setCurrentDate(new Date(Number(e.target.value), month, 1))
+              }
+              className="rounded border px-2 py-1 text-sm cursor-pointer"
+              value={year}
+            >
+              {YEARS.map((y) => (
+                <option key={y} value={y}>
+                  {y}
+                </option>
+              ))}
+            </select>
+
+            <button
+              onClick={() => setCurrentDate(new Date(year, month + 1, 1))}
+              className="rounded p-1 hover:bg-muted-foreground/10 cursor-pointer"
+            >
+              <ChevronRight />
+            </button>
+          </div>
+
+          <div className="mb-2 grid grid-cols-7 text-center text-xs text-muted-foreground">
+            {["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"].map((day) => (
+              <span key={day}>{day}</span>
+            ))}
+          </div>
+
+          <div className="grid grid-cols-7 gap-1 text-center text-sm">
+            {days.map((_, index) => {
+              const day = index - firstDayofMonth + 1;
+              const isValidDay = day > 0 && day <= daysInMonth;
+
+              return (
+                <button
+                  key={index}
+                  disabled={!isValidDay}
+                  onClick={() => {
+                    setSelectedDate(new Date(year, month, day));
+                    setOpen(false);
+                  }}
+                  className={\`h-8 rounded cursor-pointer \${isValidDay ? "hover:bg-muted-foreground/30" : "cursor-default"} \${selectedDate &&
+                  selectedDate.getDate() === day &&
+                  selectedDate.getMonth() === month &&
+                  selectedDate.getFullYear() === year
+                    ? "bg-accent-foreground text-accent"
+                    : ""}\`}
+                >
+                  {isValidDay ? day : ""}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+const MONTHS = [
+  "Janeiro",
+  "Fevereiro",
+  "Março",
+  "Abril",
+  "Maio",
+  "Junho",
+  "Julho",
+  "Agosto",
+  "Setembro",
+  "Outubro",
+  "Novembro",
+  "Dezembro",
+];
+`,
+  },
+
   card: {
     title: "Card",
     description: "Display content inside a container.",
@@ -542,176 +712,6 @@ export default function ContextMenu({ items, children }: ContextMenuProps) {
     </div>
   );
 }
-`,
-  },
-
-  calendar: {
-    title: "Calendar",
-    description: "Select a date from a calendar.",
-    preview: <DatePicker />,
-    code: `"use client";
-
-import { Calendar, ChevronLeft, ChevronRight } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
-
-export default function DatePicker() {
-  const pickerRef = useRef<HTMLDivElement | null>(null);
-
-  const [open, setOpen] = useState(false);
-  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
-
-  const CURRENT_YEAR = new Date().getFullYear();
-  const YEARS = Array.from({ length: 11 }, (_, i) => CURRENT_YEAR - 5 + i);
-
-  const today = new Date();
-
-  const [currentDate, setCurrentDate] = useState(
-    new Date(today.getFullYear(), today.getMonth(), 1)
-  );
-
-  const year = currentDate.getFullYear();
-  const month = currentDate.getMonth();
-
-  const firstDayofMonth = new Date(year, month, 1).getDay();
-  const daysInMonth = new Date(year, month + 1, 0).getDate();
-
-  const days = Array.from({
-    length: firstDayofMonth + daysInMonth,
-  });
-
-  useEffect(() => {
-    if (!YEARS.includes(currentDate.getFullYear())) {
-      const today = new Date();
-      setCurrentDate(new Date(today.getFullYear(), today.getMonth(), 1));
-    }
-
-    function handleClickOutside(event: MouseEvent) {
-      if (
-        pickerRef.current &&
-        !pickerRef.current.contains(event.target as Node)
-      ) {
-        setOpen(false);
-      }
-    }
-
-    document.addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
-
-  return (
-    <div ref={pickerRef} className="relative w-72">
-      <button
-        onClick={() => setOpen((prev) => !prev)}
-        className="w-full rounded-md border px-3 py-2 text-left text-sm flex justify-between items-center cursor-pointer"
-      >
-        <span>
-          {selectedDate
-            ? selectedDate.toLocaleDateString("pt-BR")
-            : "Selecione uma data"}
-        </span>
-        <Calendar className="w-4 h-4" />
-      </button>
-
-      {open && (
-        <div className="absolute z-10 mt-2 w-full rounded-lg border bg-background p-4 shadow-lg">
-          <div className="mb-3 flex items-center justify-center gap-2">
-            <button
-              onClick={() => setCurrentDate(new Date(year, month - 1, 1))}
-              className="rounded p-1 hover:bg-muted-foreground/10 cursor-pointer"
-            >
-              <ChevronLeft />
-            </button>
-
-            <select
-              value={month}
-              onChange={(e) =>
-                setCurrentDate(new Date(year, Number(e.target.value), 1))
-              }
-              className="rounded border px-2 py-1 text-sm cursor-pointer"
-            >
-              {MONTHS.map((m, index) => (
-                <option key={m} value={index}>
-                  {m}
-                </option>
-              ))}
-            </select>
-
-            <select
-              onChange={(e) =>
-                setCurrentDate(new Date(Number(e.target.value), month, 1))
-              }
-              className="rounded border px-2 py-1 text-sm cursor-pointer"
-              value={year}
-            >
-              {YEARS.map((y) => (
-                <option key={y} value={y}>
-                  {y}
-                </option>
-              ))}
-            </select>
-
-            <button
-              onClick={() => setCurrentDate(new Date(year, month + 1, 1))}
-              className="rounded p-1 hover:bg-muted-foreground/10 cursor-pointer"
-            >
-              <ChevronRight />
-            </button>
-          </div>
-
-          <div className="mb-2 grid grid-cols-7 text-center text-xs text-muted-foreground">
-            {["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"].map((day) => (
-              <span key={day}>{day}</span>
-            ))}
-          </div>
-
-          <div className="grid grid-cols-7 gap-1 text-center text-sm">
-            {days.map((_, index) => {
-              const day = index - firstDayofMonth + 1;
-              const isValidDay = day > 0 && day <= daysInMonth;
-
-              return (
-                <button
-                  key={index}
-                  disabled={!isValidDay}
-                  onClick={() => {
-                    setSelectedDate(new Date(year, month, day));
-                    setOpen(false);
-                  }}
-                  className={\`h-8 rounded cursor-pointer \${isValidDay ? "hover:bg-muted-foreground/30" : "cursor-default"} \${selectedDate &&
-                  selectedDate.getDate() === day &&
-                  selectedDate.getMonth() === month &&
-                  selectedDate.getFullYear() === year
-                    ? "bg-accent-foreground text-accent"
-                    : ""}\`}
-                >
-                  {isValidDay ? day : ""}
-                </button>
-              );
-            })}
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
-
-const MONTHS = [
-  "Janeiro",
-  "Fevereiro",
-  "Março",
-  "Abril",
-  "Maio",
-  "Junho",
-  "Julho",
-  "Agosto",
-  "Setembro",
-  "Outubro",
-  "Novembro",
-  "Dezembro",
-];
 `,
   },
 
