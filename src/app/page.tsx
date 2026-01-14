@@ -1,336 +1,83 @@
-"use client";
-import Accordion from "@/components/accordion/Accordion";
-import Alert from "@/components/alert/Alert";
 import Button from "@/components/button/Button";
+import Card from "@/components/card/Card";
 import DatePicker from "@/components/date/DatePicker";
-import Dialog from "@/components/dialog/Dialog";
-import { Input } from "@/components/input/Input";
-import { InputLabel } from "@/components/input/InputLabel";
-import Radio from "@/components/radio/Radio";
+import DatePickerHome from "@/components/date/DatePickerHome";
 import Search from "@/components/search/Search";
-import ThemeToggle from "@/theme/ThemeToggle";
-import { useState } from "react";
-import Card from "./../components/card/Card";
-import Carousel from "@/components/carousel/Carousel";
-import CarouselItem from "@/components/carousel/CarouselItem";
-import CheckBox from "@/components/checkbox/CheckBox";
-import Collapsible from "@/components/collapsible/Collapsible";
-import ContextMenu from "@/components/contextmenu/ContextMenu";
-import { Copy, Edit, Trash } from "lucide-react";
-import DropdownMenu from "@/components/dropdown-menu/DropdownMenu";
-import NotFound from "@/components/notfound/NotFound";
-import Skeleton from "@/components/skeleton-loading/Skeleton";
-import HoverMenu from "@/components/hovermenu/HoverMenu";
 import Table from "@/components/table/Table";
-import Tabs from "@/components/tabs/Tabs";
+import Link from "next/link";
 
 export default function Home() {
-  const [input, setInput] = useState("");
-  const [openDialog, setOpenDialog] = useState(false);
-  const [openAlert, setOpenAlert] = useState(false);
-
-  function toggleDialog() {
-    setOpenDialog(!openDialog);
-  }
-
-  function toggleAlert() {
-    setOpenAlert(!openAlert);
-  }
-
   return (
-    <main className=" bg-background flex flex-col space-y-2">
-      <div className="py-4 px-8 bg-secondary flex justify-between items-center">
-        <h1 className="text-4xl text-primary">Componentes React</h1>
-        <ThemeToggle />
-      </div>
-      {/* INPUT */}
-      <div className="py-4 px-8 flex gap-8">
-        <div className="w-full">
-          <h1 className="text-2xl text-foreground uppercase pb-2">Input</h1>
-          <div className="shadow-md w-full h-30 bg-background border rounded-lg border-foreground flex justify-center items-center">
-            <Input
-              type="text"
-              placeholder="Digite um nome:"
-              value={input}
-              onChange={setInput}
-              disabled={false}
-            />
-          </div>
-        </div>
-        <div className="w-full">
-          <h1 className="text-2xl text-foreground pb-2">INPUT with LABEL</h1>
-          <div className="shadow-md w-full h-30 bg-background border rounded-lg border-foreground flex justify-center items-center">
-            <InputLabel
-              id="name"
-              label="Name:"
-              type="text"
-              placeholder="Digite um nome:"
-              value={input}
-              onChange={setInput}
-              disabled={false}
-            />
-          </div>
+    <div className="flex h-200 p-4">
+      <div className="xl:w-1/2 h-full flex flex-col justify-center px-4">
+        <h1 className="xl:text-6xl text-4xl pb-2">Componentes React</h1>
+        <h2 className="xl:text-3xl xl:pl-2 text-2xl pl-1 pb-8">
+          agradáveis e reutilizáveis.
+        </h2>
+        <p className="pl-2 text-xl text-muted-foreground">
+          Escolha, copie e use em seus projetos.
+        </p>
+        <p className="pl-2 text-xl text-muted-foreground">
+          Componentes isolados, código claro e design inspirado em shadcn.
+        </p>
+        <div className="flex gap-4 py-12 pl-2">
+          <Link
+            href={"/components"}
+            className="bg-accent-foreground text-accent px-4 py-2 rounded-md shadow cursor-pointer transition hover:bg-accent-foreground/80"
+          >
+            Ver componentes
+          </Link>
+          <Link
+            href={"/about"}
+            className="bg-accent text-accent-foreground border-muted-foreground/10 px-4 py-2 rounded-md shadow cursor-pointer transition hover:bg-accent-foreground/20"
+          >
+            Sobre
+          </Link>
         </div>
       </div>
-      {/* SEARCH */}
-      <div className="py-4 px-8">
-        <h1 className="text-2xl text-foreground pb-2">SEARCH</h1>
-        <div className="shadow-md w-full h-30 bg-background border rounded-lg border-foreground flex justify-center items-center">
-          <Search
-            type="text"
-            value={input}
-            placeholder="Busque um nome"
-            onChange={setInput}
-          />
+      <div className="w-1/2 h-full xl:flex items-center relative hidden">
+        <div className="absolute top-12 left-18">
+          <DatePickerHome />
         </div>
-      </div>
-      {/* ACCORDION */}
-      <div className="py-4 px-8">
-        <h1 className="text-2xl text-foreground pb-2">ACCORDION</h1>
-        <div className="px-2 shadow-md w-full h-70 bg-background border rounded-lg border-foreground flex justify-center items-center">
-          <Accordion
+
+        <div className="absolute right-16 top-8">
+          <Card />
+        </div>
+
+        <div className="absolute bottom-78 right-24">
+          <Search />
+        </div>
+
+        <div className="absolute bottom-8 left-8">
+          <Table
             items={[
               {
-                id: "1",
-                title: "O que é este sistema?",
-                content:
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam semper tellus ut efficitur fermentum. Proin molestie eros quam, eu varius turpis hendrerit quis. In nibh ante, consectetur quis nisi porttitor, consectetur eleifend metus. Aliquam non odio ac eros molestie porta. Etiam odio ipsum, aliquam quis venenatis vitae, blandit nec nulla. Ut rutrum odio et convallis mattis. Sed lobortis, sem vitae condimentum rutrum, mi orci ultricies diam, ut scelerisque nisl sapien at lacus.",
+                id: 1,
+                product: "Arroz",
+                price: 29.8,
               },
               {
-                id: "2",
-                title: "Quem pode acessar?",
-                content: "Apenas usuários autorizados.",
+                id: 2,
+                product: "Carne",
+                price: 299.8,
+              },
+              {
+                id: 3,
+                product: "TV",
+                price: 29.9998,
               },
             ]}
           />
         </div>
-      </div>
-      {/* DIALOG */}
-      <div className="py-4 px-8">
-        <h1 className="text-2xl text-foreground pb-2">DIALOG</h1>
-        <div className="px-2 shadow-md w-full h-30 bg-background border rounded-lg border-foreground flex justify-center items-center">
-          <button
-            onClick={toggleDialog}
-            className="bg-accent-foreground text-accent px-4 py-2 rounded-md shadow-md cursor-pointer"
-          >
-            Open Dialog
-          </button>
-          {openDialog && (
-            <Dialog isOpen={openDialog} setIsOpen={setOpenDialog} />
-          )}
-        </div>
-      </div>
-      {/* ALERT */}
-      <div className="py-4 px-8">
-        <h1 className="text-2xl text-foreground pb-2">ALERT</h1>
-        <div className="px-2 shadow-md w-full h-30 bg-background border rounded-lg border-foreground flex justify-center items-center">
-          <button
-            onClick={toggleAlert}
-            className="bg-accent-foreground text-accent px-4 py-2 rounded-md shadow-md cursor-pointer"
-          >
-            Show Alert
-          </button>
-          {openAlert && <Alert isOpen onClose={() => setOpenAlert(false)} />}
-        </div>
-      </div>
-      {/* RADIO */}
-      <div className="py-4 px-8">
-        <h1 className="text-2xl text-foreground pb-2">RADIO</h1>
-        <div className="px-2 shadow-md w-full h-30 bg-background border rounded-lg border-foreground flex justify-center items-center">
+        <div className="absolute right-16 bottom-12">
           <div className="flex flex-col gap-2">
-            <Radio label="Feminino" value="Feminino" nameGroup="Genero" />
-            <Radio label="Masculino" value="Masculino" nameGroup="Genero" />
-            <Radio label="Outro" value="Outro" nameGroup="Genero" />
+            <Button value="Button" variant="default" />
+            <Button value="Button" variant="primary" />
+            <Button value="Button" variant="destructive" />
+            <Button value="Button" variant="ghost" />
           </div>
         </div>
       </div>
-      {/* Button */}
-      <div className="py-4 px-8">
-        <h1 className="text-2xl text-foreground pb-2">BUTTON</h1>
-        <div className="px-2 shadow-md w-full h-30 bg-background border rounded-lg border-foreground flex justify-center items-center gap-2">
-          <Button value="Button" variant="default" />
-          <Button value="Button" variant="primary" />
-          <Button value="Button" variant="destructive" />
-          <Button value="Button" variant="ghost" />
-        </div>
-      </div>
-      {/* Calendar */}
-      <div className="py-4 px-8">
-        <h1 className="text-2xl text-foreground pb-2">CALENDAR</h1>
-        <div className="px-2 shadow-md w-full h-90 bg-background border rounded-lg border-foreground flex justify-center py-4">
-          <div className="flex flex-col gap-2">
-            <DatePicker />
-          </div>
-        </div>
-      </div>
-      {/* Card */}
-      <div className="py-4 px-8">
-        <h1 className="text-2xl text-foreground pb-2">CARD</h1>
-        <div className="px-2 shadow-md w-full h-100 bg-background border rounded-lg border-foreground flex justify-center py-4">
-          <div className="flex flex-col gap-2">
-            <Card />
-          </div>
-        </div>
-      </div>
-      {/* Carousel */}
-      <div className="py-4 px-8">
-        <h1 className="text-2xl text-foreground pb-2">CAROUSEL</h1>
-        <div className="px-2 shadow-md w-full h-100 bg-background border rounded-lg border-foreground flex justify-center py-4">
-          <div className="max-w-xl mx-auto p-6">
-            <Carousel>
-              <CarouselItem>1</CarouselItem>
-              <CarouselItem>2</CarouselItem>
-              <CarouselItem>3</CarouselItem>
-              <CarouselItem>4</CarouselItem>
-              <CarouselItem>5</CarouselItem>
-              <CarouselItem>6</CarouselItem>
-            </Carousel>
-          </div>
-        </div>
-      </div>
-      {/* CheckBox */}
-      <div className="py-4 px-8">
-        <h1 className="text-2xl text-foreground pb-2">CHECKBOX</h1>
-        <div className="px-2 shadow-md w-full h-40 bg-background border rounded-lg border-foreground flex justify-center items-center">
-          <div className="flex flex-col gap-2">
-            <CheckBox
-              labelChk="JavaScript"
-              nameChk="tech"
-              valueChk="js"
-              isDisabled={false}
-            />
-            <CheckBox
-              labelChk="TypeScript"
-              nameChk="tech"
-              valueChk="ts"
-              isDisabled={true}
-            />
-            <CheckBox
-              labelChk="C#"
-              nameChk="tech"
-              valueChk="c#"
-              isDisabled={false}
-            />
-          </div>
-        </div>
-      </div>
-      {/* Collapsible */}
-      <div className="py-4 px-8">
-        <h1 className="text-2xl text-foreground pb-2">COLLAPSIBLE</h1>
-        <div className="px-2 shadow-md w-full h-60 bg-background border rounded-lg border-foreground flex justify-center items-center">
-          <div className="flex flex-col gap-2">
-            <Collapsible title="Detalhes">
-              <p>Conteúdo um</p>
-              <p>Conteúdo dois</p>
-              <p>Conteúdo tres</p>
-              <p>Conteúdo quatro</p>
-            </Collapsible>
-          </div>
-        </div>
-      </div>
-      {/* Context Menu */}
-      <div className="py-4 px-8">
-        <h1 className="text-2xl text-foreground pb-2">CONTEXT MENU</h1>
-        <div className="px-2 shadow-md w-full h-60 bg-background border rounded-lg border-foreground flex justify-center items-center">
-          <div className="flex flex-col gap-2">
-            <ContextMenu
-              items={[
-                {
-                  label: "Editar",
-                  icon: <Edit className="w-4 h-4" />,
-                  onClick: () => alert("Editar"),
-                },
-                {
-                  label: "Duplicar",
-                  icon: <Copy className="w-4 h-4" />,
-                  onClick: () => alert("Duplicar"),
-                },
-                {
-                  label: "Excluir",
-                  icon: <Trash className="w-4 h-4" />,
-                  onClick: () => alert("Excluir"),
-                },
-              ]}
-            >
-              <div className="rounded-md border p-6">
-                Clique com botao direito aqui
-              </div>
-            </ContextMenu>
-          </div>
-        </div>
-      </div>
-      {/* Dropdown Menu */}
-      <div className="py-4 px-8">
-        <h1 className="text-2xl text-foreground pb-2">DROPDOWN MENU</h1>
-        <div className="p-2 shadow-md w-full h-60 bg-background border rounded-lg border-foreground flex justify-center">
-          <div className="flex flex-col gap-2">
-            <DropdownMenu />
-          </div>
-        </div>
-      </div>
-      {/* Not Found */}
-      <div className="py-4 px-8">
-        <h1 className="text-2xl text-foreground pb-2">NOT FOUND</h1>
-        <div className="p-2 shadow-md w-full h-100 bg-background border rounded-lg border-foreground flex items-center justify-center">
-          <div className="flex flex-col gap-2">
-            <NotFound />
-          </div>
-        </div>
-      </div>
-      {/* Skeleton */}
-      <div className="py-4 px-8">
-        <h1 className="text-2xl text-foreground pb-2">SKELETON LOADING</h1>
-        <div className="p-2 shadow-md w-full bg-background border rounded-lg border-foreground">
-          <div className="w-100 mx-auto py-8">
-            <Skeleton />
-          </div>
-        </div>
-      </div>
-      {/* Hover Menu */}
-      <div className="py-4 px-8">
-        <h1 className="text-2xl text-foreground pb-2">HOVER MENU</h1>
-        <div className="p-2 shadow-md w-full h-60 bg-background border rounded-lg border-foreground flex py-4 justify-center">
-          <div className="flex flex-col gap-2">
-            <HoverMenu />
-          </div>
-        </div>
-      </div>
-      {/* Table */}
-      <div className="py-4 px-8">
-        <h1 className="text-2xl text-foreground pb-2">TABLE</h1>
-        <div className="p-2 shadow-md w-full h-70 bg-background border rounded-lg border-foreground flex py-6 justify-center">
-          <div className="flex flex-col gap-2">
-            <Table
-              items={[
-                {
-                  id: 1,
-                  product: "Arroz",
-                  price: 29.8,
-                },
-                {
-                  id: 2,
-                  product: "Carne",
-                  price: 299.8,
-                },
-                {
-                  id: 3,
-                  product: "TV",
-                  price: 29.9998,
-                },
-              ]}
-            />
-          </div>
-        </div>
-      </div>
-      {/* Tabs */}
-      <div className="py-4 px-8">
-        <h1 className="text-2xl text-foreground pb-2">TABS</h1>
-        <div className="p-2 shadow-md w-full h-120 bg-background border rounded-lg border-foreground flex py-6 justify-center">
-          <div className="flex flex-col gap-2">
-            <Tabs />
-          </div>
-        </div>
-      </div>
-    </main>
+    </div>
   );
 }

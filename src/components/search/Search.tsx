@@ -12,6 +12,7 @@ export default function Search() {
         type="text"
         placeholder="searching a name..."
         value={value}
+        onChange={(e) => setValue(e.target.value)}
         className="w-100 h-10 px-8 bg-background border border-border text-foreground rounded-md placeholder:text-muted-foreground disabled:opacity-50 disabled:cursor-not-allowed"
       />
       <X
